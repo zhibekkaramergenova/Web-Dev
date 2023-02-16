@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To Do</title>
+        <style>
+            *{
+                margin: 0;
+                font-family: Helvetica, sans-serif, Arial;
+            }
+            header{
+                display: flex;
+                height: 50px;
+                background-color: black;
+                color: #999999;
+                padding-left: 40px;
+                padding-top: 20px;
+            }
+            .name{
+                font-size: 26px;
+            }
+            main{
+                margin: 50px 50px 0px 50px;
+                width: 1340px;
+            }
+            .inputs{
+                display: flex;
+                margin-top: 15px;
+                justify-content: space-around;
+            }
+            .input-field{
+                width: 600px;
+                height: 30px;
+            }
+            .add{
+                width: 40px;
+                color:white;
+                font-weight: bold;
+                background-color: #1F75FE;
+                border: 0px solid black;
+                border-radius: 3px;
+            }
+        </style>
+        <script>
+            let tasks = document.querySelector('.more-task');
+            let inputText = document.querySelector('.input-field');
+            let addButton = document.querySelector('.add-button');
+
+            let task = document.querySelectorAll('.one-task');
+            let deleteImage = document.querySelectorAll('.delete-img');
+
+            function addTask(){                   
+                if(inputText.value != null){
+
+                    let div = document.createElement("div");
+                    div.className="task";
+                    let label = document.createElement("label");
+                    label.className = "task-new";
+                    let check = document.createElement("input");
+                    check.type = "checkbox";
+                    check.className = "task-checkbox";
+
+                    let span = document.createElement("span");
+                    span.innerHTML = inputText.value;
+
+                    let image = document.createElement("img");
+                    image.className = "delete-img";
+                    image.src = "garbage.png";
+                    image.addEventListener('click', remove);
+
+                    tasks.appendChild(div);
+                    div.appendChild(label);
+                    label.appendChild(check);
+                    label.appendChild(span);
+                    div.appendChild(image);
+
+                    inputText.value = null;
+                }
+            }
+
+            function remove(){
+                this.parentNode.remove();
+            }
+
+            function clearAll(){
+                deleteImage[0].addEventListener('click', remove);
+            }
+
+            clearAll();
+        </script>
+    </head>
+    <body>
+        <header>
+            <div class = "name" >ToDo List</div>
+        </header>
+        <main>
+            <h1>ToDo List</h1>
+            <div class="inputs">
+                <input type="text" class="input-field" placeholder="New Task">
+                <button class = "add" onclick="addTask()">Add</button>
+            </div>
+            <div class = "more-task">
+                <div class="one-task">
+                    <label class="task-new">
+                        <input type="checkbox" class="task-checkbox">
+                    </label>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
